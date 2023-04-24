@@ -318,3 +318,52 @@ figure {
     cursor: pointer;
     padding-right: 15px;
 }
+
+
+/* Modal Window */
+.modal-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal-window__content {
+    margin: 230px auto;
+    width: 500px;
+    height: 270px;
+    padding: 30px;
+    background-color: #E5E5E5;
+    font-family: 'Roboto';
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-window__content-text {
+    text-align: center;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+.modal-window__content-button {
+    align-self: flex-end;
+    margin-top: 50px;
+    background-color: rgb(95, 202, 95);
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-window__content-button:hover {
+    background-color: rgb(138, 204, 138);
+}
+
+.modal-window__content-button:active {
+    background-color: rgb(73, 201, 73);
+}

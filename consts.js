@@ -9,6 +9,8 @@ const VALUES = {
   CITIES_LIST: 'citiesList',
   CURRENT_CITY: 'currentCity',
   LIST: [],
+  DUPLICATE_CITY: 'Такой город уже есть в вашем списке!',
+  CHECK_CITY: 'Проверьте написание города!',
 };
 
 const ELEMENTS = {
@@ -18,6 +20,9 @@ const ELEMENTS = {
   LOCATIONS_CITIES_NAME: document.querySelector('.city__name'),
   LOCATIONS_LIST: document.querySelectorAll('.city__name-wrap'),
   BODY: document,
+  MODAL_WINDOW: document.querySelector('.modal-window'),
+  MODAL_WINDOW_TEXT: document.querySelector('.modal-window__content-text'),
+  MODAL_WINDOW_BUTTON: document.querySelector('.modal-window__content-button'),
 };
 
 const TAB_NOW = {

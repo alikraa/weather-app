@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import removeIcon from './img/delete-icon.svg';
 
-import { getData, saveData } from './view';
+import { getData, saveData, showModalWindow } from './view';
 import {
   VALUES, ELEMENTS, TAB_NOW, TAB_DETAILS, TAB_FORECAST, SERVER,
 } from './consts';
@@ -93,6 +93,8 @@ function addCityListLocations(cityName) {
     saveData(VALUES.CITIES_LIST, newCitiesList);
     render([cityName]);
     TAB_NOW.FAVORITES.classList.add('like');
+  } else {
+    showModalWindow(VALUES.DUPLICATE_CITY);
   }
 }
 
@@ -165,6 +167,8 @@ ELEMENTS.FORM.addEventListener('submit', (event) => {
   if (ELEMENTS.INPUT.value.trim() && isNaN(ELEMENTS.INPUT.value)) {
     getCityNow(ELEMENTS.INPUT.value.trim());
     TAB_NOW.FAVORITES.classList.remove('like');
+  } else {
+    showModalWindow(VALUES.CHECK_CITY);
   }
 });
 
