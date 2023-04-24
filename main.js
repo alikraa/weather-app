@@ -1,9 +1,10 @@
 import { format } from 'date-fns';
 import removeIcon from './img/delete-icon.svg';
 
+import { getData, saveData } from './view';
 import {
-  VALUES, ELEMENTS, TAB_NOW, TAB_DETAILS, TAB_FORECAST, SERVER, getData, saveData,
-} from './view';
+  VALUES, ELEMENTS, TAB_NOW, TAB_DETAILS, TAB_FORECAST, SERVER,
+} from './consts';
 
 async function serverRequest(serverUrl, cityName) {
   try {
@@ -91,6 +92,7 @@ function addCityListLocations(cityName) {
     const newCitiesList = [...citiesList, cityName];
     saveData(VALUES.CITIES_LIST, newCitiesList);
     render([cityName]);
+    TAB_NOW.FAVORITES.classList.add('like');
   }
 }
 
@@ -107,7 +109,11 @@ function saveCurrentCity(cityName) {
 
 function getCurrentCity() {
   const currentCity = getData(VALUES.CURRENT_CITY);
+  const citiesList = getData(VALUES.CITIES_LIST);
   saveCurrentCity(currentCity);
+  if (citiesList.includes(currentCity)) {
+    TAB_NOW.FAVORITES.classList.add('like');
+  }
 }
 
 function render(list) {
@@ -125,6 +131,7 @@ function render(list) {
 
     newCity.addEventListener('click', () => {
       saveCurrentCity(item);
+      TAB_NOW.FAVORITES.classList.add('like');
     });
 
     const deleteButton = document.createElement('button');
@@ -139,6 +146,9 @@ function render(list) {
     deleteButton.addEventListener('click', () => {
       cityWrap.remove();
       deleteCityListLocations(cityWrap.textContent);
+      if (cityWrap.textContent === TAB_NOW.NAME.textContent) {
+        TAB_NOW.FAVORITES.classList.remove('like');
+      }
     });
   });
 }
@@ -154,6 +164,7 @@ ELEMENTS.FORM.addEventListener('submit', (event) => {
   event.preventDefault();
   if (ELEMENTS.INPUT.value.trim() && isNaN(ELEMENTS.INPUT.value)) {
     getCityNow(ELEMENTS.INPUT.value.trim());
+    TAB_NOW.FAVORITES.classList.remove('like');
   }
 });
 
